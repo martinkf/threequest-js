@@ -25,6 +25,8 @@ function Sprite(x_, y_, frame1_, frame2_, frame3_, frame4_, rateOfAnimation_)
     {
       this.avancaAnimacao();
     }
+
+    console.log(this.counter);
   }
 
   this.avancaAnimacao = function()

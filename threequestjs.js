@@ -3,6 +3,8 @@ var msc_main;
 var img_menuBg;
 var img_instructionsBg;
 var img_creditsBg;
+var img_gameBackgroundA;
+var img_gameBackgroundB;
 var img_enemyFishBlueA;
 var img_enemyFishBlueB;
 
@@ -12,6 +14,7 @@ var currentScreen;
 var telaMenu;
 var telaInstructions;
 var telaCredits;
+var telaJogo;
 //-
 var menuMusic;
 
@@ -22,6 +25,8 @@ function preload()
   img_menuBg = loadImage('assets/img/menuBg.png');  
   img_instructionsBg = loadImage('assets/img/instructionsBg.png');
   img_creditsBg = loadImage('assets/img/creditsBg.png');
+  img_gameBackgroundA = loadImage('assets/img/gameBackgroundA.png');
+  img_gameBackgroundB = loadImage('assets/img/gameBackgroundB.png');
   img_enemyFishBlueA = loadImage('assets/img/enemyFishBlueA.png');
   img_enemyFishBlueB = loadImage('assets/img/enemyFishBlueB.png');
 }
@@ -39,6 +44,7 @@ function setup()
   telaMenu = new TelaMenu();
   telaInstructions = new TelaInstructions();
   telaCredits = new TelaCredits();
+  telaJogo = new TelaJogo();
 
   menuMusic = msc_main;  
 }
@@ -74,10 +80,8 @@ function draw()
   }
   else if (currentScreen == "telaJogo")
   {
-  	// to do
-  	// 
-  	//
-  	//
+  	telaJogo.update();
+    telaJogo.show();
   }
 }
 
@@ -99,7 +103,8 @@ function keyPressed()
     	switch (telaMenu.currentChoice)
     	{
     		case 0: // new game
-    			menuMusic.stop();    			
+    			menuMusic.stop();
+          currentScreen = "telaJogo";
     			break;
     		case 1: // instructions    			
     			currentScreen = "telaInstructions";
