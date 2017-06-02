@@ -1,28 +1,29 @@
+// library of assets - global variables
+var msc_main;
+var img_menuBg;
+var img_instructionsBg;
+var img_creditsBg;
+var img_enemyFishBlueA;
+var img_enemyFishBlueB;
+
+// local variables
 var currentScreen;
-
-var menuMusic;
-var menuSoundFX;
-
+//-
 var telaMenu;
 var telaInstructions;
 var telaCredits;
+//-
+var menuMusic;
 
 // preload p5
 function preload()
 {
-  menuMusic = loadSound('assets/msc/main.mp3');
-  menuSoundFX = loadSound('assets/snd/gotStuff.mp3');
-
-  telaMenu = new TelaMenu();
-  telaInstructions = new TelaInstructions();
-  telaCredits = new TelaCredits();
-
-  telaMenu.selectionFishImg = loadImage('assets/img/selectionFish.png');
-  telaMenu.bgImage = loadImage('assets/img/menuBg.png');
-
-  telaInstructions.bgImage = loadImage('assets/img/instructionsBg.png');
-
-  telaCredits.bgImage = loadImage('assets/img/creditsBg.png');
+  msc_main = loadSound('assets/msc/main.mp3');
+  img_menuBg = loadImage('assets/img/menuBg.png');  
+  img_instructionsBg = loadImage('assets/img/instructionsBg.png');
+  img_creditsBg = loadImage('assets/img/creditsBg.png');
+  img_enemyFishBlueA = loadImage('assets/img/enemyFishBlueA.png');
+  img_enemyFishBlueB = loadImage('assets/img/enemyFishBlueB.png');
 }
 
 // setup p5
@@ -32,9 +33,14 @@ function setup()
   createCanvas(800, 600);
   frameRate(60);
 
+  // local variables setup
   currentScreen = "telaCredits";
-  //telaMenu = new TelaMenu();
-  
+
+  telaMenu = new TelaMenu();
+  telaInstructions = new TelaInstructions();
+  telaCredits = new TelaCredits();
+
+  menuMusic = msc_main;  
 }
 
 // draw p5
@@ -47,14 +53,24 @@ function draw()
   	telaMenu.show();	
   }
   else if (currentScreen == "telaInstructions")
-  {
-  	if (!menuMusic.isPlaying()) menuMusic.play();  	
+  {  	
   	telaInstructions.show();
   }
   else if (currentScreen == "telaCredits")
   {
   	if (!menuMusic.isPlaying()) menuMusic.play();
-  	telaCredits.show();
+
+    if (!(telaCredits.counter % 180 == 0) || telaCredits.frozen)
+    {
+      telaCredits.update();
+  	  telaCredits.show();
+    }
+    else
+    {
+      currentScreen = "telaMenu";
+      telaCredits.counter = 0;
+      telaCredits.frozen = true;      
+    }
   }
   else if (currentScreen == "telaJogo")
   {
@@ -83,26 +99,31 @@ function keyPressed()
     	switch (telaMenu.currentChoice)
     	{
     		case 0: // new game
-    			console.log(0);
+    			menuMusic.stop();    			
     			break;
-    		case 1: // instructions
-    			menuSoundFX.play();
+    		case 1: // instructions    			
     			currentScreen = "telaInstructions";
     			break;
-    		case 2: // credits
-    			menuSoundFX.play();
+    		case 2: // credits    			
     			currentScreen = "telaCredits";    			
     			break;
     	}
     }
   }
-  else if (currentScreen == "telaCredits" || currentScreen === "telaInstructions")
+  else if (currentScreen === "telaInstructions")
   {
   	if (keyCode === ENTER)
   	{
-  		menuSoundFX.play();
-  		telaMenu.currentChoice = 0;
   		currentScreen = "telaMenu";  		
   	}
-  }  
+  }
+  else if (currentScreen == "telaCredits")
+  {
+    if (keyCode === ENTER)
+    {
+      telaCredits.counter = 0;
+      telaCredits.frozen = true;
+      currentScreen = "telaMenu";      
+    }
+  }
 }

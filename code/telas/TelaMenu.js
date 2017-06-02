@@ -1,31 +1,43 @@
 function TelaMenu()
 {
-	this.currentChoice = 0;
-	this.selectionFishY = 0;
+	this.bgImage = img_menuBg;
+	this.currentChoice = 0;	
+	this.selectionFish = 
+	new Sprite(
+		200, 
+		260, 
+		img_enemyFishBlueA, 
+		img_enemyFishBlueA, 
+		img_enemyFishBlueA, 
+		img_enemyFishBlueB, 
+		15
+	);
 
 	this.update = function()
 	{
 		switch (this.currentChoice)
 		{
 			case 0: // NEW GAME
-				this.selectionFishY = 260;
+				this.selectionFish.y = 260;
 				break;
 			case 1: // INSTRUCTIONS
-				this.selectionFishY = 328;
+				this.selectionFish.y = 328;
 				break;
 			case 2: // CREDITS
-				this.selectionFishY = 396;
+				this.selectionFish.y = 396;
 				break;
 		}
+
+		this.selectionFish.update();
 	}
 
 	this.show = function()
 	{
-		// desenha o bg
+		// DESENHA O BG
 		image(this.bgImage, 0, 0);
 
-		// desenha o fish
-		image(this.selectionFishImg, 200, this.selectionFishY);
+		// DESENHA O SELECTION FISH SPRITE
+		this.selectionFish.show();
 	}
 
 	this.pressedUp = function()
