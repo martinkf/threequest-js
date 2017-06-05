@@ -1,15 +1,14 @@
 function TelaMenu()
 {
 	this.bgImage = img_menuBg;
-	this.currentChoice = 0;	
+	this.currentChoice = 0;
+	this.selectionFishY = 260;
 	this.selectionFish = 
 	new Sprite(
-		200, 
-		260, 
-		img_enemyFishBlueA, 
-		img_enemyFishBlueA, 
-		img_enemyFishBlueA, 
-		img_enemyFishBlueB, 
+		img_enemyFishRedA, 
+		img_enemyFishRedA, 
+		img_enemyFishRedA, 
+		img_enemyFishRedB, 
 		15
 	);
 
@@ -17,14 +16,32 @@ function TelaMenu()
 	{
 		switch (this.currentChoice)
 		{
-			case 0: // NEW GAME
-				this.selectionFish.y = 260;
+			case 0: // NEW GAME				
+				this.selectionFish.changeSprite(
+					img_enemyFishRedA,
+					img_enemyFishRedA,
+					img_enemyFishRedA,
+					img_enemyFishRedB
+				);
+				this.selectionFishY = 260;
 				break;
-			case 1: // INSTRUCTIONS
-				this.selectionFish.y = 328;
+			case 1: // INSTRUCTIONS				
+				this.selectionFish.changeSprite(
+					img_enemyFishGreenA,
+					img_enemyFishGreenA,
+					img_enemyFishGreenA,
+					img_enemyFishGreenB
+				);
+				this.selectionFishY = 328;
 				break;
 			case 2: // CREDITS
-				this.selectionFish.y = 396;
+				this.selectionFish.changeSprite(
+					img_enemyFishBlueA,
+					img_enemyFishBlueA,
+					img_enemyFishBlueA,
+					img_enemyFishBlueB
+				);
+				this.selectionFishY = 396;
 				break;
 		}
 
@@ -37,7 +54,7 @@ function TelaMenu()
 		image(this.bgImage, 0, 0);
 
 		// DESENHA O SELECTION FISH SPRITE
-		this.selectionFish.show();
+		this.selectionFish.desenhaAnchorCorner(200, this.selectionFishY);
 	}
 
 	this.pressedUp = function()

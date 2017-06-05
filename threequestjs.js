@@ -1,10 +1,27 @@
 // library of assets - global variables
 var msc_main;
+var img_null;
 var img_menuBg;
 var img_instructionsBg;
 var img_creditsBg;
 var img_gameBackgroundA;
-var img_gameBackgroundB;
+var img_gameWaterSurface;
+var img_gameBottomBarOxygen;
+var img_gameBottomBarRed;
+var img_gameBottomBarGreen;
+var img_gameBottomBarBlue;
+var img_gameBottomBarGridNull;
+var img_gameBottomBarGridRed;
+var img_gameBottomBarGridGreen;
+var img_gameBottomBarGridBlue;
+var img_playerA;
+var img_playerB;
+var img_playerC;
+var img_playerD;
+var img_enemyFishRedA;
+var img_enemyFishRedB;
+var img_enemyFishGreenA;
+var img_enemyFishGreenB;
 var img_enemyFishBlueA;
 var img_enemyFishBlueB;
 
@@ -22,11 +39,28 @@ var menuMusic;
 function preload()
 {
   msc_main = loadSound('assets/msc/main.mp3');
-  img_menuBg = loadImage('assets/img/menuBg.png');  
+  img_null = loadImage('assets/img/null.png');
+  img_menuBg = loadImage('assets/img/menuBg.png');
   img_instructionsBg = loadImage('assets/img/instructionsBg.png');
   img_creditsBg = loadImage('assets/img/creditsBg.png');
   img_gameBackgroundA = loadImage('assets/img/gameBackgroundA.png');
-  img_gameBackgroundB = loadImage('assets/img/gameBackgroundB.png');
+  img_gameWaterSurface = loadImage('assets/img/gameWaterSurface.png');
+  img_gameBottomBarOxygen = loadImage('assets/img/gameBottomBarOxygen.png');
+  img_gameBottomBarRed = loadImage('assets/img/gameBottomBarRed.png');
+  img_gameBottomBarGreen = loadImage('assets/img/gameBottomBarGreen.png');
+  img_gameBottomBarBlue = loadImage('assets/img/gameBottomBarBlue.png');
+  img_gameBottomBarGridNull = loadImage('assets/img/gameBottomBarGridNull.png');
+  img_gameBottomBarGridRed = loadImage('assets/img/gameBottomBarGridRed.png');
+  img_gameBottomBarGridGreen = loadImage('assets/img/gameBottomBarGridGreen.png');
+  img_gameBottomBarGridBlue = loadImage('assets/img/gameBottomBarGridBlue.png');
+  img_playerA = loadImage('assets/img/playerA.png');
+  img_playerB = loadImage('assets/img/playerB.png');
+  img_playerC = loadImage('assets/img/playerC.png');
+  img_playerD = loadImage('assets/img/playerD.png');
+  img_enemyFishRedA = loadImage('assets/img/enemyFishRedA.png');
+  img_enemyFishRedB = loadImage('assets/img/enemyFishRedB.png');
+  img_enemyFishGreenA = loadImage('assets/img/enemyFishGreenA.png');
+  img_enemyFishGreenB = loadImage('assets/img/enemyFishGreenB.png');
   img_enemyFishBlueA = loadImage('assets/img/enemyFishBlueA.png');
   img_enemyFishBlueB = loadImage('assets/img/enemyFishBlueB.png');
 }
@@ -93,7 +127,7 @@ function keyPressed()
   	if (keyCode === UP_ARROW) 
   	{  	  
    	  telaMenu.pressedUp();
- 	} 
+ 	  } 
     if (keyCode === DOWN_ARROW) 
     {
       telaMenu.pressedDown();
@@ -129,6 +163,13 @@ function keyPressed()
       telaCredits.counter = 0;
       telaCredits.frozen = true;
       currentScreen = "telaMenu";      
+    }
+  }
+  else if (currentScreen == "telaJogo")
+  {
+    if (keyCode === 32)
+    {
+      telaJogo.player.shoot();
     }
   }
 }
