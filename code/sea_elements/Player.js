@@ -4,14 +4,20 @@
 	//
 	// int this.x
 	// int this.y
-	// Sprite this.sprite
-	// bool this.isAlive
+	// Sprite this.sprite	
+	// bool this.isFrozen
 	// bool this.isOnSurface
-	// bool this.wantsToShoot
+	//
 	// int this.facingDirection
 	// 0 - LEFT
 	// 1 - RIGHT
-	// bool this.isFrozen
+	//
+	// int this.shotType
+	// 0 - regular
+	// 1 - red
+	// 2 - green
+	// 3 - blue
+	//
 
 	// continua a inicialização
 	this.x = width/2;
@@ -27,11 +33,9 @@
 		6
 	);
 
-	this.isAlive = true;
-
 	this.isOnSurface = true;
 
-	this.wantsToShoot = false;
+	this.shotType = 0;
 
 	this.facingDirection = 1;
 
@@ -41,8 +45,8 @@
 	this.update = function()
 	{	
 		// VERIFICAÇÕES REFERENTES À SURFACE
-		if (this.y == 116)  isOnSurface = true;
-		else 				isOnSurface = false;
+		if (this.y === 116) this.isOnSurface = true;
+		else this.isOnSurface = false;
 
 		// VERIFICAÇÕES REFERENTES À MOVIMENTAÇÃO
 		if (!this.isFrozen)
@@ -60,7 +64,7 @@
 	// SHOW FUNCTION
 	this.show = function()
 	{
-		if (this.isAlive) this.sprite.desenhaAnchorCenter(this.x, this.y);
+		this.sprite.desenhaAnchorCenter(this.x, this.y);
 	}
 
 
@@ -79,10 +83,12 @@
 
 	this.pressingLeft = function()
 	{
-		if (!isOnSurface)
+		if (!this.isOnSurface)
 		{
 			if ((this.x - 4) < 52) this.x = 52;
 			else 				   this.x -= 4;
+
+			this.facingDirection = 0;
 
 			this.sprite.isFlipped = true;
 		}		
@@ -90,21 +96,14 @@
 
 	this.pressingRight = function()
 	{
-		if (!isOnSurface)
+		if (!this.isOnSurface)
 		{
 			if ((this.x + 4) > (width - 52)) this.x = (width - 52);
 			else 							 this.x += 4;
 
-			this.sprite.isFlipped = false;
-		}
-	}
+			this.facingDirection = 1;
 
-	this.shoot = function()
-	{
-		if (!isOnSurface)
-		{
-			this.wantsToShoot = true;
-			console.log("Tang tang tang!");
+			this.sprite.isFlipped = false;
 		}
 	}
 }

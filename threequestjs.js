@@ -18,6 +18,12 @@ var img_playerA;
 var img_playerB;
 var img_playerC;
 var img_playerD;
+var img_shotRegular;
+var img_shotRed;
+var img_shotGreen;
+var img_shotBlue;
+var img_diverA;
+var img_diverB;
 var img_enemyFishRedA;
 var img_enemyFishRedB;
 var img_enemyFishGreenA;
@@ -57,6 +63,12 @@ function preload()
   img_playerB = loadImage('assets/img/playerB.png');
   img_playerC = loadImage('assets/img/playerC.png');
   img_playerD = loadImage('assets/img/playerD.png');
+  img_shotRegular = loadImage('assets/img/shotRegular.png');
+  img_shotRed = loadImage('assets/img/shotRed.png');
+  img_shotGreen = loadImage('assets/img/shotGreen.png');
+  img_shotBlue = loadImage('assets/img/shotBlue.png');
+  img_diverA = loadImage('assets/img/diverA.png');
+  img_diverB = loadImage('assets/img/diverB.png');
   img_enemyFishRedA = loadImage('assets/img/enemyFishRedA.png');
   img_enemyFishRedB = loadImage('assets/img/enemyFishRedB.png');
   img_enemyFishGreenA = loadImage('assets/img/enemyFishGreenA.png');
@@ -73,7 +85,7 @@ function setup()
   frameRate(60);
 
   // local variables setup
-  currentScreen = "telaCredits";
+  currentScreen = "telaJogo";
 
   telaMenu = new TelaMenu();
   telaInstructions = new TelaInstructions();
@@ -119,15 +131,19 @@ function draw()
   }
 }
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // i/o
 function keyPressed() 
 {
   if (currentScreen == "telaMenu")
   {
-  	if (keyCode === UP_ARROW) 
-  	{  	  
-   	  telaMenu.pressedUp();
- 	  } 
+    if (keyCode === UP_ARROW) 
+    {     
+      telaMenu.pressedUp();
+    } 
     if (keyCode === DOWN_ARROW) 
     {
       telaMenu.pressedDown();
@@ -169,7 +185,7 @@ function keyPressed()
   {
     if (keyCode === 32)
     {
-      telaJogo.player.shoot();
+      if (!telaJogo.player.isOnSurface) telaJogo.playerShoot();
     }
   }
 }
