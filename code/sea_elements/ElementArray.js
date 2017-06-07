@@ -3,9 +3,12 @@
 	// interface para facilitar
 	//
 	// [] this.internalArray
+	// bool this.spawnerIsTurnedOn
 
 	// continua a inicialização
 	this.internalArray = [];
+
+	this.spawnerIsTurnedOn = true;
 	// fim da inicialização
 
 
@@ -48,6 +51,16 @@
 
 	this.spawnNewDiver = function()
 	{
-		this.internalArray.push(new Diver());
+		if (this.spawnerIsTurnedOn) this.internalArray.push(new Diver());
+	}
+
+	this.spawnNewBubble = function()
+	{
+		if (this.spawnerIsTurnedOn) this.internalArray.push(new AirBubble());	
+	}
+
+	this.spawnNewEnemy = function()
+	{
+		if (this.spawnerIsTurnedOn) this.internalArray.push(new Enemy());
 	}
 }

@@ -71,22 +71,22 @@
 	// CUSTOM FUNCTIONS
 	this.pressingUp = function()
 	{
-		if ((this.y - 4) < 116) this.y = 116;
-		else 					this.y -= 4;
+		if ((this.y - 5) < 116) this.y = 116;
+		else 					this.y -= 5;
 	}
 
 	this.pressingDown = function()
 	{
-		if ((this.y + 4) > 500) this.y = 500;
-		else 					this.y += 4;
+		if ((this.y + 5) > 500) this.y = 500;
+		else 					this.y += 5;
 	}
 
 	this.pressingLeft = function()
 	{
 		if (!this.isOnSurface)
 		{
-			if ((this.x - 4) < 52) this.x = 52;
-			else 				   this.x -= 4;
+			if ((this.x - 5) < 52) this.x = 52;
+			else 				   this.x -= 5;
 
 			this.facingDirection = 0;
 
@@ -98,8 +98,8 @@
 	{
 		if (!this.isOnSurface)
 		{
-			if ((this.x + 4) > (width - 52)) this.x = (width - 52);
-			else 							 this.x += 4;
+			if ((this.x + 5) > (width - 52)) this.x = (width - 52);
+			else 							 this.x += 5;
 
 			this.facingDirection = 1;
 

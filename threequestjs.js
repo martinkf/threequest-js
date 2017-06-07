@@ -1,4 +1,4 @@
-// library of assets - global variables
+// LIBRARY OF ASSETS - GLOBAL VARIABLES
 var msc_main;
 var img_null;
 var img_menuBg;
@@ -24,14 +24,28 @@ var img_shotGreen;
 var img_shotBlue;
 var img_diverA;
 var img_diverB;
+var img_airBubbleA;
+var img_airBubbleB;
 var img_enemyFishRedA;
 var img_enemyFishRedB;
 var img_enemyFishGreenA;
 var img_enemyFishGreenB;
 var img_enemyFishBlueA;
 var img_enemyFishBlueB;
+var img_enemySubRedA;
+var img_enemySubRedB;
+var img_enemySubRedC;
+var img_enemySubRedD;
+var img_enemySubGreenA;
+var img_enemySubGreenB;
+var img_enemySubGreenC;
+var img_enemySubGreenD;
+var img_enemySubBlueA;
+var img_enemySubBlueB;
+var img_enemySubBlueC;
+var img_enemySubBlueD;
 
-// local variables
+// LOCAL VARIABLES
 var currentScreen;
 //-
 var telaMenu;
@@ -41,7 +55,7 @@ var telaJogo;
 //-
 var menuMusic;
 
-// preload p5
+// P5 FUNCTION: PRELOAD
 function preload()
 {
   msc_main = loadSound('assets/msc/main.mp3');
@@ -69,22 +83,36 @@ function preload()
   img_shotBlue = loadImage('assets/img/shotBlue.png');
   img_diverA = loadImage('assets/img/diverA.png');
   img_diverB = loadImage('assets/img/diverB.png');
+  img_airBubbleA = loadImage('assets/img/airBubbleA.png');
+  img_airBubbleB = loadImage('assets/img/airBubbleB.png');
   img_enemyFishRedA = loadImage('assets/img/enemyFishRedA.png');
   img_enemyFishRedB = loadImage('assets/img/enemyFishRedB.png');
   img_enemyFishGreenA = loadImage('assets/img/enemyFishGreenA.png');
   img_enemyFishGreenB = loadImage('assets/img/enemyFishGreenB.png');
   img_enemyFishBlueA = loadImage('assets/img/enemyFishBlueA.png');
   img_enemyFishBlueB = loadImage('assets/img/enemyFishBlueB.png');
+  img_enemySubRedA = loadImage('assets/img/enemySubRedA.png');
+  img_enemySubRedB = loadImage('assets/img/enemySubRedB.png');
+  img_enemySubRedC = loadImage('assets/img/enemySubRedC.png');
+  img_enemySubRedD = loadImage('assets/img/enemySubRedD.png');
+  img_enemySubGreenA = loadImage('assets/img/enemySubGreenA.png');
+  img_enemySubGreenB = loadImage('assets/img/enemySubGreenB.png');
+  img_enemySubGreenC = loadImage('assets/img/enemySubGreenC.png');
+  img_enemySubGreenD = loadImage('assets/img/enemySubGreenD.png');
+  img_enemySubBlueA = loadImage('assets/img/enemySubBlueA.png');
+  img_enemySubBlueB = loadImage('assets/img/enemySubBlueB.png');
+  img_enemySubBlueC = loadImage('assets/img/enemySubBlueC.png');
+  img_enemySubBlueD = loadImage('assets/img/enemySubBlueD.png');
 }
 
-// setup p5
+// P5 FUNCTION: SETUP
 function setup()
 {
-  // general setup  
+  // GENERAL CONFIG SETUP
   createCanvas(800, 600);
   frameRate(60);
 
-  // local variables setup
+  // INICIALIZAÇÃO DAS LOCAL VARIABLES
   currentScreen = "telaJogo";
 
   telaMenu = new TelaMenu();
@@ -95,7 +123,7 @@ function setup()
   menuMusic = msc_main;  
 }
 
-// draw p5
+// P5 FUNCTION: DRAW
 function draw()
 { 
   if (currentScreen == "telaMenu")
@@ -131,11 +159,8 @@ function draw()
   }
 }
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
-// i/o
+// HANDLING I/O
 function keyPressed() 
 {
   if (currentScreen == "telaMenu")
@@ -150,27 +175,27 @@ function keyPressed()
     }
     if (keyCode === ENTER)
     {
-    	switch (telaMenu.currentChoice)
-    	{
-    		case 0: // new game
-    			menuMusic.stop();
+      switch (telaMenu.currentChoice)
+      {
+        case 0: // new game
+          menuMusic.stop();
           currentScreen = "telaJogo";
-    			break;
-    		case 1: // instructions    			
-    			currentScreen = "telaInstructions";
-    			break;
-    		case 2: // credits    			
-    			currentScreen = "telaCredits";    			
-    			break;
-    	}
+          break;
+        case 1: // instructions         
+          currentScreen = "telaInstructions";
+          break;
+        case 2: // credits          
+          currentScreen = "telaCredits";          
+          break;
+      }
     }
   }
   else if (currentScreen === "telaInstructions")
   {
-  	if (keyCode === ENTER)
-  	{
-  		currentScreen = "telaMenu";  		
-  	}
+    if (keyCode === ENTER)
+    {
+      currentScreen = "telaMenu";     
+    }
   }
   else if (currentScreen == "telaCredits")
   {
@@ -188,4 +213,9 @@ function keyPressed()
       if (!telaJogo.player.isOnSurface) telaJogo.playerShoot();
     }
   }
+}
+
+// CUSTOM FUNCTIONS
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

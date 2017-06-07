@@ -39,7 +39,7 @@
 				img_shotRegular,
 				60
 			);
-			this.speed = 4;
+			this.speed = 6;
 			break;
 		case 1: // RED
 			this.sprite = 
@@ -50,7 +50,7 @@
 				img_shotRed,
 				60
 			);
-			this.speed = 6;
+			this.speed = 12;
 			break;
 		case 2: // GREEN
 			this.sprite = 
@@ -61,7 +61,7 @@
 				img_shotGreen,
 				60
 			);
-			this.speed = 3;
+			this.speed = 4;
 			break;
 		case 3: // BLUE
 			this.sprite = 
