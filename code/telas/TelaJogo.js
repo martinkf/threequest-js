@@ -109,27 +109,27 @@
 		}
 
 		// SPAWNER: DIVER
-		if (this.frameCounter % 180 == 0) // 180 - uma vez a cada 3 segundos
+		if (this.frameCounter % 1 == 0) // 180 - uma vez a cada 3 segundos
 		{
-			if (getRandomInt(1, 4) == 1) // 1, 4 - uma chance em quatro
+			if (getRandomInt(1, 1) == 1) // 1, 4 - uma chance em quatro
 			{
 				this.diverArray.spawnNewDiver();
 			}
 		}
 
 		// SPAWNER: AIR BUBBLE
-		if (this.frameCounter % 240 == 0) // 240 - uma vez a cada 4 segundos
+		if (this.frameCounter % 1 == 0) // 240 - uma vez a cada 4 segundos
 		{
-			if (getRandomInt(1, 6) == 1) // 1, 6 - uma chance em seis
+			if (getRandomInt(1, 1) == 1) // 1, 6 - uma chance em seis
 			{
 				this.bubbleArray.spawnNewBubble();
 			}
 		}
 
 		// SPAWNER: ENEMY
-		if (this.frameCounter % 60 == 0) // 60 - uma vez a cada 1 segundo
+		if (this.frameCounter % 1 == 0) // 60 - uma vez a cada 1 segundo
 		{
-			if (getRandomInt(1, 2) == 1) // 1, 2 - uma chance em dois
+			if (getRandomInt(1, 1) == 1) // 1, 2 - uma chance em dois
 			{
 				this.enemyArray.spawnNewEnemy();
 			}
