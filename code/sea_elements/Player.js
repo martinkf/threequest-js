@@ -1,4 +1,4 @@
-﻿function Player(sprite1_, sprite2_, sprite3_, sprite4_)
+﻿function Player()
 {
 	// interface para facilitar
 	//
@@ -26,10 +26,10 @@
 
 	this.sprite = 
 	new Sprite(
-		sprite1_, 
-		sprite2_,
-		sprite3_,
-		sprite4_,
+		img_playerA,
+		img_playerB,
+		img_playerC,
+		img_playerD,
 		6
 	);
 

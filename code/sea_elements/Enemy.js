@@ -175,6 +175,7 @@
 	// SHOW FUNCTION
 	this.show = function()
 	{
+		//if (this.isAlive) this.sprite.desenhaAnchorCenter(this.x, this.y);
 		if (this.isAlive) this.sprite.desenhaAnchorCenter(this.x, this.y);
 	}
 

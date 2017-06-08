@@ -1,4 +1,5 @@
 // LIBRARY OF ASSETS - GLOBAL VARIABLES
+var fnt_pressStart2P;
 var msc_main;
 var img_null;
 var img_menuBg;
@@ -14,6 +15,7 @@ var img_gameBottomBarGridNull;
 var img_gameBottomBarGridRed;
 var img_gameBottomBarGridGreen;
 var img_gameBottomBarGridBlue;
+var img_oxygenInf;
 var img_playerA;
 var img_playerB;
 var img_playerC;
@@ -44,6 +46,10 @@ var img_enemySubBlueA;
 var img_enemySubBlueB;
 var img_enemySubBlueC;
 var img_enemySubBlueD;
+var img_explosionA;
+var img_explosionB;
+var img_explosionC;
+var img_explosionD;
 
 // LOCAL VARIABLES
 var currentScreen;
@@ -58,7 +64,10 @@ var menuMusic;
 // P5 FUNCTION: PRELOAD
 function preload()
 {
+  fnt_pressStart2P = loadFont('assets/fnt/PressStart2P.ttf');
+
   msc_main = loadSound('assets/msc/main.mp3');
+
   img_null = loadImage('assets/img/null.png');
   img_menuBg = loadImage('assets/img/menuBg.png');
   img_instructionsBg = loadImage('assets/img/instructionsBg.png');
@@ -73,6 +82,7 @@ function preload()
   img_gameBottomBarGridRed = loadImage('assets/img/gameBottomBarGridRed.png');
   img_gameBottomBarGridGreen = loadImage('assets/img/gameBottomBarGridGreen.png');
   img_gameBottomBarGridBlue = loadImage('assets/img/gameBottomBarGridBlue.png');
+  img_oxygenInf = loadImage('assets/img/oxygenInf.png');
   img_playerA = loadImage('assets/img/playerA.png');
   img_playerB = loadImage('assets/img/playerB.png');
   img_playerC = loadImage('assets/img/playerC.png');
@@ -103,6 +113,10 @@ function preload()
   img_enemySubBlueB = loadImage('assets/img/enemySubBlueB.png');
   img_enemySubBlueC = loadImage('assets/img/enemySubBlueC.png');
   img_enemySubBlueD = loadImage('assets/img/enemySubBlueD.png');
+  img_explosionA = loadImage('assets/img/explosionA.png');
+  img_explosionB = loadImage('assets/img/explosionB.png');
+  img_explosionC = loadImage('assets/img/explosionC.png');
+  img_explosionD = loadImage('assets/img/explosionD.png');
 }
 
 // P5 FUNCTION: SETUP
@@ -216,6 +230,35 @@ function keyPressed()
 }
 
 // CUSTOM FUNCTIONS
-function getRandomInt(min, max) {
+function getRandomInt(min, max) 
+{
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function testarColisaoRectRect(objeto1_, objeto2_)
+{
+  // THIS ONLY WORKS WHEN BOTH ARE DRAWN FROM CENTER.
+  return (
+    objeto1_.x + (objeto1_.sprite.width / 2) + (objeto2_.sprite.width / 2) >= objeto2_.x
+    &&
+    objeto1_.x < objeto2_.x + (objeto2_.sprite.width/2) + (objeto1_.sprite.width/2)
+    &&
+    objeto1_.y + (objeto1_.sprite.height / 2) + (objeto2_.sprite.height / 2) >= objeto2_.y
+    &&
+    objeto1_.y < objeto2_.y + (objeto2_.sprite.height/2) + (objeto1_.sprite.height/2)
+  );
+}
+
+function testarColisaoRectRectCorner(objeto1_, objeto2_)
+{
+  // THIS ONLY WORKS WHEN BOTH ARE DRAWN FROM TOP-LEFT CORNER
+  return (
+    objeto1_.x + objeto1_.sprite.width >= objeto2_.x
+    &&
+    objeto1_.x < objeto2_.x + objeto2_.sprite.width
+    &&
+    objeto1_.y + objeto1_.sprite.height >= objeto2_.y
+    &&
+    objeto1_.y < objeto2_.y + objeto2_.sprite.height
+  );
 }

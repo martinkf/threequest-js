@@ -9,6 +9,8 @@ function Sprite(frame1_, frame2_, frame3_, frame4_, rateOfAnimation_)
   this.currentFrame = this.frame1;
   this.counter = 0;
   this.isFlipped = false;
+  this.height = this.frame1.height;
+  this.width = this.frame1.width;
 
   this.changeSprite = function(frame1_, frame2_, frame3_, frame4_)
   {
